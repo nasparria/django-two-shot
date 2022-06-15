@@ -7,5 +7,5 @@ from receipts.models import Receipt
 
 class ReceiptListView(ListView):
     model = Receipt
-    template_name = "receipt/receipt_list.html"
+    template_name = "receipts/receipt_list.html"
     context_object_name = "receipts"

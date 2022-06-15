@@ -5,5 +5,5 @@ from receipts.views import ReceiptListView
 
 
 urlpatterns = [
-    path("", ReceiptListView.as_view(), name="home")
+    path("", ReceiptListView.as_view(), name="home"),
 ]
