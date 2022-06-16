@@ -20,6 +20,18 @@
           </li>
           {% if user.is_authenticated %}
           <li><a href="{% url 'logout' %}">Logout</a></li>
+          <li><a href="{% url 'home' %}">Receipts</a></li>
+          <li><a href="{% url 'category_list' %}">Categories</a></li>
+          <li><a href="{% url 'account_list' %}">Accounts</a></li>
+          <li>
+            <a href="{% url 'create_receipt' %}">Create new Receipt</a>
+          </li>
+          <li>
+            <a href="{% url 'create_expense_category' %}">Create category</a>
+          </li>
+          <li>
+            <a href="{% url 'create_account' %}">Create Account</a>
+          </li>
           {% else %}
           <li><a href="{% url 'signup' %}">Sign Up</a></li>
           <li><a href="{% url 'login' %}">Login</a></li>

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from receipts.views import ReceiptListView, ReceiptCreateView, AccountListView, ExpenseCategoryListView, ExpenseCategoryCreateView
+from receipts.views import ReceiptListView, ReceiptCreateView, AccountListView, ExpenseCategoryListView, ExpenseCategoryCreateView, AccountCreateView
 
 
 urlpatterns = [
@@ -9,5 +9,7 @@ urlpatterns = [
     path('categories/', ExpenseCategoryListView.as_view(), name='category_list'),
     path('accounts/', AccountListView.as_view(), name='account_list'),
     path("categories/create/", ExpenseCategoryCreateView.as_view(), name="create_expense_category"),
+    path('accounts/create/', AccountCreateView.as_view(), name='create_account'),
+
 
 ]
