@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
@@ -39,8 +39,20 @@ class ExpenseCategoryListView(LoginRequiredMixin, ListView):
 
 class AccountListView(LoginRequiredMixin, ListView):
     model = Account
-    template_name = "receipt/account_list.html"
+    template_name = "receipts/account_list.html"
     context_object_name = "accounts"
 
     def get_queryset(self):
         return Account.objects.filter(owner=self.request.user)
+
+
+class ExpenseCategoryCreateView(LoginRequiredMixin, CreateView):
+    model = ExpenseCategory
+    template_name = "receipts/create_expense_category.html"
+    fields = ["name"]
+
+    def form_valid(self, form):
+        item = form.save(commit=False)
+        item.owner = self.request.user
+        item.save()
+        return redirect("category_list")
