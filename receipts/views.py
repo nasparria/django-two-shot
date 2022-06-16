@@ -9,7 +9,7 @@ from receipts.models import Receipt
 class ReceiptListView(LoginRequiredMixin, ListView):
     model = Receipt
     template_name = "receipts/receipt_list.html"
-    # context_object_name = "receipts"
+    context_object_name = "receipts"
 
     def get_queryset(self):
         return Receipt.objects.filter(purchaser=self.request.user)
