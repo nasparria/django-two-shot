@@ -28,6 +28,6 @@ class Receipt(models.Model):
     total = models.DecimalField(decimal_places=3, max_digits=10)
     tax = models.DecimalField(decimal_places=3, max_digits=10)
     date = models.DateTimeField()
-    purchaser = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="receipts", on_delete=models.CASCADE)
-    category = models.ForeignKey(ExpenseCategory, related_name="receipts", on_delete=models.CASCADE)
+    purchaser = models.ForeignKey(UserModel, related_name="receipts", on_delete=models.CASCADE, null=True)
+    category = models.ForeignKey(ExpenseCategory, related_name="receipts", on_delete=models.CASCADE,)
     account = models.ForeignKey(Account, related_name="receipts", on_delete=models.CASCADE, null=True, blank=True)
