@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 
-from receipts.models import Receipt
+from receipts.models import Receipt, Account, ExpenseCategory
 # Create your views here.
 
 
@@ -23,4 +23,24 @@ class ReceiptCreateView(LoginRequiredMixin, CreateView):
     fields = ["vendor", "total", "tax", "date", "category", "account"]
     success_url = reverse_lazy("home")
 
+    def form_valid(self, form):
+        form.instance.purchaser = self.request.user
+        return super().form_valid(form)
 
+
+class ExpenseCategoryListView(LoginRequiredMixin, ListView):
+    model = ExpenseCategory
+    template_name = "receipts/expense_list.html"
+    context_object_name = "categories"
+
+    def get_queryset(self):
+        return ExpenseCategory.objects.filter(owner=self.request.user)
+
+
+class AccountListView(LoginRequiredMixin, ListView):
+    model = Account
+    template_name = "receipt/account_list.html"
+    context_object_name = "accounts"
+
+    def get_queryset(self):
+        return Account.objects.filter(owner=self.request.user)

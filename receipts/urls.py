@@ -1,10 +1,12 @@
 from django.urls import path
-from receipts.models import Receipt
 
-from receipts.views import ReceiptListView, ReceiptCreateView
+from receipts.views import ReceiptListView, ReceiptCreateView, AccountListView, ExpenseCategoryListView
 
 
 urlpatterns = [
     path("", ReceiptListView.as_view(), name="home"),
     path("create/", ReceiptCreateView.as_view(), name='create_receipt'),
+    path('categories/', ExpenseCategoryListView.as_view(), name='category_list'),
+    path('accounts/', AccountListView.as_view(), name='account_list'),
+
 ]
